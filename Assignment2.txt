@@ -1,0 +1,139 @@
+/*
+Write a program that can be used to calculate the taxes applied on an employee’s salary in
+Albania. By giving the employee’s Gross Salary, the program should calculate PIT (Personal
+Income Tax), Occupational Health Contributions, Employee Social Contributions and Net Salary.
+*/
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+float net_Salary(float month[]);
+float gross_Salary(float salary);
+int job_work(double array1[], int number);
+
+int main()
+{
+    int gross, Salary, salary, number = 3;
+    double IncomeTax;
+    double net_salary;
+    double HealthContributions;
+    double socialContributions;
+
+    cout << "******************************************************************************" << endl;
+    double job[3] = {};
+
+    cout << "How many jobs you do ?" << endl;
+    cin >> job[3];
+
+    if (job[3] < 3)
+    {
+        job_work(job, job[3]);
+    }
+    else
+    {
+        cout << "SORRY! The program work only for two  gross salary calculation." << endl;
+    }
+
+    cout << "\n";
+    cout << "************************" << "   Input the Gross Salary   " << "**************************" << endl;
+    cout << "******" << " The program will calculate Net salary and taxes, for each month. " << "******";
+    cout << endl;
+    cin >> Salary;
+
+    int month[12];
+
+    if (Salary > 29999)
+
+    {
+        IncomeTax = ((Salary - 30000) * 0.13);
+
+        HealthContributions = (Salary * 0.017);
+
+        socialContributions = (Salary * 0.095);
+
+        net_salary = (Salary - IncomeTax - HealthContributions - socialContributions);
+
+        for (int i = 0; i < 12; i++)
+        {
+            // month[i] = 0;
+            cout << "\n-Input the gross for next month : " << endl;
+            cout << " The  Personal Income Tax(PIT) is:  " << setw(10) << right << ((Salary - 30000) * 0.13) << " Leke";
+            cout << "\n Health Contributions is : " << setw(19) << right << (Salary * 0.017) << " Leke";
+            cout << "\n Social Contributions is : " << setw(19) << right << (Salary * 0.095) << " Leke";
+            cout << "\n The Net Salary is : " << setw(25) << right << (Salary - IncomeTax - HealthContributions - socialContributions) << " Leke" << endl;
+            cin >> Salary;
+            cout << " ";
+        }
+    }
+    else
+    {
+        cout << "You are not taxed for smaller values than 29999" << endl;
+    }
+
+    cout << "\n";
+    cout << "************************" << "   Input the Net Salary  " << "**************************" << endl;
+    cout << "****************" << "  The program will calculate Gross salary.  " << "******************";
+    cout << endl;
+    cin >> salary;
+
+    cout << " The Gross salary is: " << setw(22) << right << (salary * 120.5) / 100 << " Leke" << endl;
+
+}
+float net_Salary(float month[])
+{
+    int Salary;
+
+    for (int i = 0; i < 12; i++)
+    {
+        month[i] = 0;
+    }
+    return 0;
+
+}
+
+float gross_Salary(float salary)
+{
+    cin >> salary;
+
+    salary = (salary * 125.5) / salary * 100;
+
+    return salary;
+}
+int job_work(double array1[], int number)
+{
+    double gross;
+    int i = 0;
+    int job[3];
+
+    for (int i = 0; i < number; i++)
+    {
+        double IncomeTax, HealthContributions, socialContributions, net_salary;
+
+        cout << "\nInput the gross salary !" << endl;
+        cin >> gross;
+
+        IncomeTax = ((gross - 30000) * 0.13);
+
+        HealthContributions = (gross * 0.017);
+
+        socialContributions = (gross * 0.095);
+
+        net_salary = (gross - IncomeTax - HealthContributions - socialContributions);
+
+        if (gross > 29999)
+        {
+            cout << " The  Personal Income Tax(PIT) is:  " << setw(10) << right << ((gross - 30000) * 0.13) << " Leke" << endl;
+            cout << " The Health Contributions is : " << setw(15) << right << (gross * 0.017) << " Leke" << endl;
+            cout << " Social Contributions is: " << setw(20) << right << (gross * 0.095) << " Leke" << endl;
+            cout << " The Net Salary is : " << setw(25) << right << (gross - IncomeTax - HealthContributions - socialContributions) << " Leke" << endl;
+            array1[i] = gross;
+        }
+        else
+        {
+            cout << "You are not taxed for smaller values than 29999" << endl;
+        }
+
+    }
+    return i;
+
+}
